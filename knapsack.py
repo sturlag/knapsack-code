@@ -7,6 +7,9 @@ class Element:
         self.s = s
         self.v = v
 
+    def __str__(self):
+        return str(self.s)
+
 def s(S):
     return sum([e.s for e in S])
 
@@ -109,13 +112,13 @@ def A2(f,B2,e):
             newB2.add(element)
 
         #Add medium items from smallest to largest
-        medium = sorted([e in B2 if M(e.s)],lambda e: e.s)
+        medium = sorted([e for e in B2 if M(e.s)],key=lambda e: e.s)
         for element in medium:
             if s(newB2) + element.s <= 1:
                 newB2.add(element)
 
         #Add small items from largest to smallest
-        small = sorted([e in B2 if S(e.s)],lambda e: -e.s)
+        small = sorted([e for e in B2 if S(e.s)],key=lambda e: -e.s)
         for element in small:
             if s(newB2) + element.s <= 1:
                 newB2.add(element)
@@ -133,8 +136,8 @@ def smallest(S,func):
     return smallest
 
 def containsValue(S,t):
-    B_l = set([e in S if e.s > 1-t])
-    B_s = set([e in S if e.s <= 1-t])
+    B_l = set([e for e in S if e.s > 1-t])
+    B_s = set([e for e in S if e.s <= 1-t])
 
     for C in powerset(B_l):
         if s(C) + s(B_s) >= t:
