@@ -8,7 +8,7 @@ class Element:
         self.v = v
 
     def __str__(self):
-        return str(self.s)
+        return 'Element[s='+str(self.s)+',v='+str(self.v)+']'
 
 def s(S):
     return sum([e.s for e in S])
@@ -38,9 +38,10 @@ def twobins(E):
 
     r = random.randint(1,2)
     if r == 1:
-        return B1,s(B1)
+        output = set([str(B1) for e in B1]), s(B1)
     else:
-        return B2,s(B2)
+        output = set([str(B2) for e in B2]), s(B2)
+    return output
 
 def algorithm_A(E):
     B = set()
