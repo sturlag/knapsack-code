@@ -94,15 +94,21 @@ def A1(f,B1,e):
 def A2(f,B2,e):
     newB2 = set()
     B2.add(e)
+    
+    I_found = False
+
     if f == 0:
         I = containsValue(B2,0.9)
         if I:
             newB2 = I
+            I_found = True
+
     elif f == 1:
         I = containsValue(B2,0.8)
         if I:
             newB2 = I
-    else:
+            I_found = True
+    if not I_found:
         B2 = list(B2)
         #Find smallest element in M2
         element = smallest(B2,M2)
