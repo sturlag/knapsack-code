@@ -63,10 +63,12 @@ def algorithm_A(E):
         if 0.5*(s(B1) + s(B2)) >= 0.7:
             break
 
-    if r == 1:
-        return B1,s(B1)
-    else:
-        return B2,s(B2)
+    # if r == 1:
+    #     return B1,s(B1)
+    # else:
+    #     return B2,s(B2)
+
+    return B1,B2,s(B1),s(B2)
 
 def A1(f,B1,e):
     newB1 = set()

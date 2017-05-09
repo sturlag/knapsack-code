@@ -18,20 +18,40 @@ def randomTest(n):
 
     optimumValue = opt(elements)[1]
     twobinsValue = twobins(elements)[1]
+    B1,B2,B1_val,B2_val = algorithm_A(elements)
 
-    return optimumValue, twobinsValue
+    return optimumValue, twobinsValue, B1,B2,B1_val,B2_val
 
 def main():
-    testsize = 500
+    testsize = 10
     tests = 20
 
     for i in range(tests):
         print '-------------- Test ' + str(i) + ' ----------------'
-        optimumValue, twobinsValue = randomTest(testsize)
-        ratio = twobinsValue/optimumValue
+        optimumValue, twobinsValue, B1, B2, B1_val, B2_val = randomTest(testsize)
+        twobins_ratio = twobinsValue/optimumValue
         print 'Optimum: ' + str(optimumValue)
         print 'Twobins: ' + str(twobinsValue)
-        print 'Ratio: ' + str(ratio)
+        print 'Twobins Ratio: ' + str(twobins_ratio)
+        print
+        print 'B1:', [str(element) for element in B1]
+        print 'Value:', B1_val
+        print 'B2:', [str(element) for element in B2]
+        print 'Value:', B2_val
+        print 'Average:', (B1_val + B2_val)*0.5
+
+def worstCaseTwoBins():
+    epsilon = 1e-10
+    elements = [Element(x,x) for x in [0.5+epsilon,0.5+epsilon,1.,1.,1.]]
+    optimumValue = opt(elements)[1]
+    twobinsValue = twobins(elements)[1]
+    ratio = twobinsValue/optimumValue
+
+    print('------------------ Two Bins Worst Case -----------------')
+    print('Optimum: ' + str(optimumValue))
+    print('Twobins: ' + str(twobinsValue))
+    print('Ratio:   ' + str(ratio))
 
 if __name__ == '__main__':
     main()
+    worstCaseTwoBins()
