@@ -60,8 +60,8 @@ def algorithm_A(E):
         B1 = A1(f,B1,e)
         B2 = A2(f,B2,e)
 
-        if 0.5*(s(B1) + s(B2)) >= 0.7:
-            break
+        # if 0.5*(s(B1) + s(B2)) >= 0.7:
+        #     break
 
     # if r == 1:
     #     return B1,s(B1)
@@ -94,7 +94,7 @@ def A1(f,B1,e):
 def A2(f,B2,e):
     newB2 = set()
     B2.add(e)
-    
+
     I_found = False
 
     if f == 0:
@@ -149,8 +149,8 @@ def containsValue(S,t):
     B_s = set([e for e in S if e.s <= 1-t])
 
     for C in powerset(B_l):
-        if s(C) + s(B_s) >= t:
-            I = C
+        if s(C) + s(B_s) >= t and s(C) <= 1:
+            I = set(C)
             for e in B_s:
                 if s(I) + e.s <= 1:
                     I.add(e)

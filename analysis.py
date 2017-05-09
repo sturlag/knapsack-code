@@ -39,6 +39,7 @@ def main():
         print 'B2:', [str(element) for element in B2]
         print 'Value:', B2_val
         print 'Average:', (B1_val + B2_val)*0.5
+        print 'Average Ratio:', (B1_val + B2_val)*0.5/optimumValue
 
 def worstCaseTwoBins():
     epsilon = 1e-10
