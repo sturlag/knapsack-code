@@ -1,5 +1,6 @@
 from knapsack import twobins,algorithm_A,Element
 from knapsack_opt import opt
+from knapsack_det import iwama_taketomi
 import numpy
 
 
@@ -18,9 +19,10 @@ def randomTest(n):
 
     optimumValue = opt(elements)[1]
     twobinsValue = twobins(elements)[1]
+    detValue = iwama_taketomi(elements)[1]
     B1,B2,B1_val,B2_val = algorithm_A(elements)
 
-    return optimumValue, twobinsValue, B1,B2,B1_val,B2_val
+    return optimumValue, twobinsValue, B1,B2,B1_val,B2_val, detValue
 
 def main():
     testsize = 10
@@ -28,7 +30,7 @@ def main():
 
     for i in range(tests):
         print '-------------- Test ' + str(i) + ' ----------------'
-        optimumValue, twobinsValue, B1, B2, B1_val, B2_val = randomTest(testsize)
+        optimumValue, twobinsValue, B1, B2, B1_val, B2_val, detValue = randomTest(testsize)
         twobins_ratio = twobinsValue/optimumValue
         print 'Optimum: ' + str(optimumValue)
         print 'Twobins: ' + str(twobinsValue)
@@ -40,6 +42,9 @@ def main():
         print 'Value:', B2_val
         print 'Average:', (B1_val + B2_val)*0.5
         print 'Average Ratio:', (B1_val + B2_val)*0.5/optimumValue
+        print
+        print 'Iwama Taketomi:', detValue
+        print 'Iwama Taketomi Ratio:', detValue/optimumValue 
 
 def worstCaseTwoBins():
     epsilon = 1e-10
