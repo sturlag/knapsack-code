@@ -36,3 +36,7 @@ def opt(E):
     memo = {}
     output = optHelper(n,W,memo)
     return output
+
+def iteropt(E):
+    for i in xrange(1,len(E)+1):
+        yield opt(E[:i])[1]

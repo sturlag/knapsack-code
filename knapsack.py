@@ -35,13 +35,14 @@ def twobins(E):
             B1.add(e)
         elif s(B2) + e.s <= 1:
             B2.add(e)
+        yield s(B1),s(B2)
 
-    r = random.randint(1,2)
-    if r == 1:
-        output = set([str(B1) for e in B1]), s(B1)
-    else:
-        output = set([str(B2) for e in B2]), s(B2)
-    return output
+    # r = random.randint(1,2)
+    # if r == 1:
+    #     output = set([str(B1) for e in B1]), s(B1)
+    # else:
+    #     output = set([str(B2) for e in B2]), s(B2)
+    # return output
 
 def algorithm_A(E):
     B = set()
@@ -51,14 +52,17 @@ def algorithm_A(E):
     f = 0
     r = random.randint(1,2)
     for e in E:
-        if L(e.s):
-            B = set([e])
-            return B,s(B)
+        # if L(e.s):
+        #     B = set([e])
+        #     return B,s(B)
         if M4(e.s):
             f = 1
 
         B1 = A1(f,B1,e)
         B2 = A2(f,B2,e)
+        B1_val = s(B1)
+        B2_val = s(B2)
+        yield B1_val,B2_val
 
         # if 0.5*(s(B1) + s(B2)) >= 0.7:
         #     break
@@ -68,7 +72,7 @@ def algorithm_A(E):
     # else:
     #     return B2,s(B2)
 
-    return B1,B2,s(B1),s(B2)
+    # return B1,B2,s(B1),s(B2)
 
 def A1(f,B1,e):
     newB1 = set()
