@@ -3,18 +3,21 @@ import random
 def s(S):
     return sum([e.s for e in S])
 
+def v(S):
+    return sum([e.v for e in S])
+
 # def ks_max(elements):
 #     max_element = max(elements,key=lambda x:x.v)
 #     return set([(max_element)])
 
-def ks_greedy(elements):
-    l = list(elements)
-    l = sorted(l,key=lambda x:-x.v/x.s)
-    B = set()
-    for e in l:
-        if s(B) + e.s <= 1:
-            B.add(e)
-    return B
+# def ks_greedy(elements):
+#     l = list(elements)
+#     l = sorted(l,key=lambda x:-x.v/x.s)
+#     B = set()
+#     for e in l:
+#         if s(B) + e.s <= 1:
+#             B.add(e)
+#     return B
 
 # def algorithm_B_offline(elements):
 #     r = random.randint(1,2)
@@ -49,4 +52,4 @@ def algorithm_B(elements):
     for element in elements:
         Bmax = ks_max(Bmax,element)
         Bgreedy = ks_greedy(Bgreedy,element)
-        yield s(Bmax),s(Bgreedy)
+        yield v(Bmax),v(Bgreedy)

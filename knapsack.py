@@ -1,11 +1,12 @@
 import random
 from itertools import chain, combinations
+from fractions import *
 
 class Element:
 
     def __init__(self,s,v):
-        self.s = s
-        self.v = v
+        self.s = Fraction(str(s))
+        self.v = Fraction(str(v))
 
     def __str__(self):
         return 'Element[s='+str(self.s)+',v='+str(self.v)+']'
@@ -51,10 +52,19 @@ def algorithm_A(E):
 
     f = 0
     r = random.randint(1,2)
+    found_large = False
+    large_value = 0.0
     for e in E:
-        # if L(e.s):
-        #     B = set([e])
-        #     return B,s(B)
+        if found_large:
+            yield large_value, large_value
+            continue
+        if L(e.s):
+            found_large = True
+            large_value = e.s
+            yield e.s,e.s
+            continue
+            # B = set([e])
+            # return B,s(B)
         if M4(e.s):
             f = 1
 
